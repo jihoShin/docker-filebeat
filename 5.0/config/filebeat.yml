@@ -1,0 +1,46 @@
+
+#=========================== Filebeat prospectors =============================
+
+filebeat.prospectors:
+
+
+# Each - is a prospector. Most options can be set at the prospector level, so
+# you can use different prospectors for various configurations.
+# Below are the prospector specific configurations.
+
+- input_type: log
+
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /mnt/logs/m1-api/report/*.log
+
+
+
+
+
+#================================ Outputs =====================================
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+
+  worker: 4
+  compression_level: 3
+
+  # The Logstash hosts
+  hosts: ["172.31.34.43:5044"]
+  
+  
+  
+
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug
+logging.level: warning
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+#logging.selectors: ["*"]
+#
+#
